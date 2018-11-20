@@ -1,0 +1,80 @@
+public class Triangle {
+    private int firstSide;
+    private int secondSide;
+    private int thirdSide;
+    Triangle(){
+        firstSide=0;
+        secondSide=0;
+        thirdSide=0;
+    }
+    Triangle(int aFirstSide,int aSecoundSide, int aThirdSide){
+    firstSide = aFirstSide;
+    secondSide = aSecoundSide;
+    thirdSide = aThirdSide;
+    }
+    double getArea(){
+        return Math.sqrt(this.getPerimeter()/2*(this.getPerimeter()/2-firstSide)*(this.getPerimeter()/2-secondSide)*(this.getPerimeter()/2-thirdSide));
+    }
+    int getPerimeter(){
+        return (firstSide+secondSide+thirdSide);
+    }
+
+    public int getFirstSide() {
+        return firstSide;
+    }
+
+    public int getSecondSide() {
+        return secondSide;
+    }
+
+    public int getThirdSide() {
+        return thirdSide;
+    }
+}
+//main file
+import java.util.Scanner;
+
+public class triangleCreator {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int choice = 0;
+        do {
+            System.out.println("Please write sides of triangle or write 0 to stop program.");
+            System.out.print("First side: ");
+            int a = in.nextInt();
+            System.out.print("Second side: ");
+            int b = in.nextInt();
+            System.out.print("Third side: ");
+            int c = in.nextInt();
+            if(a > 0 &&  b>0 && c>0 && a+b>c && a+c>b && b+c>a){
+                Triangle tr = new Triangle(a,b,c);
+                do{
+                    System.out.println("0.To stop program.");
+                    System.out.println("1.To calculate area.");
+                    System.out.println("2.To calculate perimeter.");
+                    System.out.println("3.To create new triangle.");
+                    choice = in.nextInt();
+                    switch(choice){
+                        case 0:
+                            break;
+                        case 1:
+                            System.out.println("The area of triangle with sides such as: " + tr.getFirstSide() + "," + tr.getSecondSide()+ "," + tr.getThirdSide() + ".Is equals: "+ tr.getArea());
+                            break;
+                        case 2:
+                            System.out.println("The perimeter of triangle with sides such as: " + tr.getFirstSide() + "," + tr.getSecondSide()+ "," + tr.getThirdSide()+ ".Is equals: "+ tr.getPerimeter());
+                            break;
+                        case 3:
+                            break;
+                        default:
+                            System.out.println("Sorry but number: " + choice +" does not operate.");
+                            break;
+                    }
+                }while(choice != 0 && choice != 3);
+            } else if(a == 0 || b == 0 || c== 0){}else{
+                System.out.println("You create wrong triangle, please try again.");
+                choice =1;
+            }
+        }while(choice != 0);
+    }
+
+}
