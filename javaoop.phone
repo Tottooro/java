@@ -1,0 +1,59 @@
+public class Phone {
+    private String number;
+    Network net;
+    Phone(String aNumber){
+        number = aNumber;
+    }
+    void reg(Network aNet){net = aNet;}
+    void call(String secoundNumber){
+        if(net != null){
+            int flag = 0;
+            for(int i = 0; i<net.size();i++){
+                if(secoundNumber.equals(net.numb(i))){
+                    flag = 1;
+                    System.out.println("Calling..");
+                }
+            }
+            if(flag == 0) System.out.println("Number does not exist in this network.");
+        }else{
+            System.out.println("Sorry but your number does not connect to any network.");
+        }
+    }
+}
+//network file
+import java.util.ArrayList;
+
+public class Network {
+    private ArrayList<String> list = new ArrayList<String>();
+    Network(String ...aList){
+        for (String a:aList) {
+            list.add(a);
+        }
+    }
+    int size(){
+        return list.size();
+    }
+    String numb(int a){
+        return list.get(a);
+    }
+
+}
+//main file
+import java.util.Scanner;
+
+public class phoneOwner {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        System.out.println("Please enter your phone number.");
+        String number = in.nextLine();
+        Phone my = new Phone(number);
+        Network asdNet = new Network("88005553535", "43567875645", "77777777777");
+        my.reg(asdNet);
+        do{
+            System.out.println("Enter the number to call or 0 to exit.");
+            number = in.nextLine();
+            if(!number.equals("0")){
+            my.call(number);}
+        }while(!number.equals("0"));
+    }
+}
