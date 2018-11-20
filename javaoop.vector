@@ -1,0 +1,93 @@
+public class Vector3d {
+    private double x;
+    private double y;
+    private double z;
+    Vector3d(){
+        x = 0;
+        y = 0;
+        z = 0;
+    }
+    Vector3d(double aX, double aY, double aZ){
+        x = aX;
+        y = aY;
+        z = aZ;
+    }
+    Vector3d addition(Vector3d vect){
+        return new Vector3d(x+vect.x,y+vect.y, z+ vect.z);
+    }
+    double scalarMultiplection(Vector3d vect){
+        return x*vect.x+y*vect.y+z*vect.z;
+    }
+    Vector3d vectorMultiplection(Vector3d vect){
+        return new Vector3d(y*vect.z-z*vect.y,x*vect.z-z*vect.x, x*vect.y-y*vect.x);
+    }
+
+    public double getX() {
+        return x;
+    }
+
+    public double getY() {
+        return y;
+    }
+
+    public double getZ() {
+        return z;
+    }
+}
+//main file
+import java.util.Scanner;
+
+public class vector3dCreator {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int choice = 0;
+        do{
+            System.out.println("Write two vectors.");
+            System.out.print("First.\nX: ");
+            double x = in.nextDouble();
+            System.out.print("Y: ");
+            double y = in.nextDouble();
+            System.out.print("Z: ");
+            double z = in.nextDouble();
+            Vector3d first = new Vector3d(x,y,z);
+            System.out.print("Second.\nX: ");
+            x = in.nextDouble();
+            System.out.print("Y: ");
+            y = in.nextDouble();
+            System.out.print("Z: ");
+            z = in.nextDouble();
+            Vector3d second = new Vector3d(x,y,z);
+            do{
+                System.out.println("0.To stop program.");
+                System.out.println("1.To calculate addition of vectors.");
+                System.out.println("2.To calculate scalar multiplection.");
+                System.out.println("3.To calculate vector multiplection.");
+                System.out.println("4.To chose another vectors.");
+                choice = in.nextInt();
+                switch (choice){
+                    case 0:
+                        break;
+                    case 1:
+                        Vector3d add = first.addition(second);
+                        System.out.println("The addition of vectors: (" + first.getX() + ";" + first.getY() + ";" + first.getZ() + ") and (" +
+                         second.getX() + ";" + second.getY() + ";" + second.getZ() +").Will be vector: (" + add.getX() + ";" + add.getY() + ";" + add.getZ() + ")");
+                        break;
+                    case 2:
+                        System.out.println("The scalar multiplection of vectors: (" + first.getX() + ";" + first.getY() + ";" + first.getZ() + ") and (" +
+                                second.getX() + ";" + second.getY() + ";" + second.getZ() +").Will be number: " + first.scalarMultiplection(second));
+                        break;
+                    case 3:
+                        Vector3d vec = first.vectorMultiplection(second);
+                        System.out.println("The vector multiplex of vectors: (" + first.getX() + ";" + first.getY() + ";" + first.getZ() + ") and (" +
+                                second.getX() + ";" + second.getY() + ";" + second.getZ() +").Will be vector: (" + vec.getX() + ";" + vec.getY() + ";" + vec.getZ() + ")");
+                        break;
+                    case 4:
+                        break;
+                    default:
+                        System.out.println("Sorry but number: " + choice +" does not operate.");
+                }
+            }while(choice !=0 && choice != 4);
+
+        }while(choice != 0);
+    }
+}
