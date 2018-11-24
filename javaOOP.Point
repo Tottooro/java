@@ -1,0 +1,28 @@
+public class Point {
+    private double x;
+    private double y;
+    Point(){
+        x = 0;
+        y = 0;
+    }
+
+    Point(double x,double y){
+        this.x = x;
+        this.y = y;
+    }
+
+    public double getY() {
+        return y;
+    }
+
+    public double getX() {
+        return x;
+    }
+    double getSide(Point poin){
+        return Math.sqrt(Math.pow(x-poin.x,2)+Math.pow(y-poin.y,2));
+    }
+    @Override
+    public String toString(){
+        return "\nx: " + getX() + "\ny: " + getY();
+    }
+}
