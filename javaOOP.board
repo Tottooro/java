@@ -1,0 +1,43 @@
+
+public class Board {
+    private Shape[] Quarter;
+    Board(){
+        Quarter = new Shape[4];
+    }
+
+    public void getQuarter() {
+        for(int i = 0; i<4; i++){
+            if(Quarter[i] != null){
+                System.out.println((i+1)+": "+Quarter[i].toString());
+            }else{
+                System.out.println(i+": nothing.");
+            }
+        }
+    }
+    public void delete(int i){
+        if(i > 0 && i<5){
+            Quarter[i-1] = null;
+        }else{
+            System.out.println("The element with number" + i+ "does not exist.");
+        }
+    }
+    public void set(int i ,Shape another){
+        if(i > 0 && i<5){
+            Quarter[i-1] = another;
+            System.out.println(Quarter[i-1]);
+        }else{
+            System.out.println("The element with number" + i+ "does not exist.");
+        }
+
+    }
+    public double getArea(){
+        int area = 0;
+        for(int i =0; i<4; i++){
+            if(Quarter[i] != null){
+                area += Quarter[i].getArea();
+            }
+        }
+        return area;
+    }
+
+}
