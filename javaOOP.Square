@@ -1,0 +1,26 @@
+public class Square extends Shape {
+    private Point point1;
+    private Point point2;
+    Square(){
+        point1 = new Point();
+        point2 = new Point();
+    }
+    Square(Point point1, Point point2){
+        this.point1 = point1;
+        this.point2 = point2;
+    }
+
+    @Override
+    double getPerimeter() {
+        return 4*point1.getSide(point2);
+    }
+
+    @Override
+    double getArea() {
+        return Math.pow(point1.getSide(point2),2);
+    }
+    @Override
+    public String toString(){
+        return "The square with 2 points\nfirst:"+point1+"\nsecond:"+point2;
+    }
+}
