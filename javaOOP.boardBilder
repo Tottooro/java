@@ -1,0 +1,66 @@
+import java.util.Scanner;
+
+public class boardBuilder {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int choice;
+        Board board = new Board();
+        do{
+            System.out.println("0.Stop program.");
+            System.out.println("1.Set chosen shape in chosen quarter.");
+            System.out.println("2.Delete shape from chosen quarter.");
+            System.out.println("3.Get area of all the board.");
+            System.out.println("now in board we have: ");
+            board.getQuarter();
+            choice = in.nextInt();
+            switch (choice){
+                case 0:
+                    break;
+                case 1:
+                    System.out.println("1.Square\n2.Circle");
+                    int choseShape = in.nextInt();
+                    System.out.println("chose the position, 1-4.");
+                    int chosePosition = in.nextInt();
+                    switch (choseShape){
+                        case 1:
+                            System.out.print("First point.\nx: ");
+                            double xfSquare = in.nextDouble();
+                            System.out.print("y: ");
+                            double yfSquare = in.nextDouble();
+                            System.out.print("Second point.\nx: ");
+                            double xsSquare = in.nextDouble();
+                            System.out.print("y: ");
+                            double ysSquare = in.nextDouble();
+                            board.set(chosePosition, new Square(new Point(xfSquare,yfSquare), new Point(xsSquare,ysSquare)));
+                            break;
+                        case 2:
+                            System.out.print("First point.\nx: ");
+                            double xfCircle = in.nextDouble();
+                            System.out.print("y: ");
+                            double yfCircle = in.nextDouble();
+                            System.out.print("Second point.\nx: ");
+                            double xsCircle = in.nextDouble();
+                            System.out.print("y: ");
+                            double ysCircle = in.nextDouble();
+                            board.set(chosePosition, new Circle(new Point(xfCircle,yfCircle), new Point(xsCircle,ysCircle)));
+                            break;
+                         default:
+                             System.out.println("Please chose point 1 or 2.");
+                             break;
+
+                    }
+                    break;
+                case 2:
+                    int chose = in.nextInt();
+                    board.delete(chose);
+                    break;
+                case 3:
+                    System.out.println("The area: " + board.getArea());
+                    break;
+                default:
+                    System.out.println("This variant does not exist.");
+
+            }
+        }while(choice != 0);
+    }
+}
