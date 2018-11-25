@@ -1,0 +1,6 @@
+public class myException extends Exception {
+    @Override
+    public String toString() {
+        return "Wrong index";
+    }
+}
