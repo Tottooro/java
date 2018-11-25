@@ -1,0 +1,58 @@
+import java.util.Arrays;
+import java.util.Comparator;
+
+public class group{
+    private Student[] group = new Student[10];
+    public void add(Student student, int index) {
+        try {
+
+            if(index<1 || index>10){
+                throw new  myException();
+            }else{
+                group[index-1] = student;
+            }
+        }catch (myException e){
+            System.out.println(e.toString());
+        }
+    }
+    public void delete(int index){
+        try {
+
+            if(index<1 || index>10){
+                throw new myException();
+            }else{
+                group[index-1] = null;
+            }
+        }catch (myException e){
+            System.out.println(e.toString());
+        }
+    }
+    public void search(String student){
+        for (Student s:group) {
+            if(s != null){
+                if(s.getName().equals(student)){
+                    System.out.println("This group have this student");;
+                    return;
+                }
+            }
+        }
+        System.out.println("This group does not have this student");
+    }
+
+    @Override
+    public String toString() {
+        if (group == null) {
+            Arrays.sort(group, Comparator.comparing(Student::getName));
+        }
+        int count = 1;
+        for (Student s:group) {
+            if(s != null){
+                System.out.println(count+": "+s.toString());
+            }else {
+                System.out.println(count+ ": " +"nothing");
+            }
+            count++;
+        }
+        return "";
+    }
+}
