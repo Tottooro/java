@@ -1,0 +1,50 @@
+import java.util.Scanner;
+
+public class main {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int choice = 0;
+        group group = new group();
+        do{
+            System.out.println("0.Stop program.");
+            System.out.println("1.Add student to group.");
+            System.out.println("2.Delete student from group.");
+            System.out.println("3.To search student by the name.");
+            group.toString();
+            choice = in.nextInt();
+            switch(choice){
+                case 0:
+                    break;
+                case 1:
+                    System.out.print("Name:" );
+                    String name = in.nextLine();
+                    name = in.nextLine();
+                    System.out.print("Age: " );
+                    int age = in.nextInt();
+                    System.out.print("Speciality: ");
+                    String speciality = in.nextLine();
+                    speciality = in.nextLine();
+                    System.out.print("Course: ");
+                    int course = in.nextInt();
+                    System.out.print("Position: ");
+                    int index = in.nextInt();
+                    group.add(new Student(name,age,course,speciality),index);
+                    break;
+                case 2:
+                    System.out.print("Position: ");
+                    int position = in.nextInt();
+                    group.delete(position);
+                    break;
+                case 3:
+                    System.out.println("Name: ");
+                    String nammos = in.nextLine();
+                    nammos = in.nextLine();
+                    group.search(nammos);
+                    break;
+                default:
+                    System.out.println("Wrong choice");
+                    break;
+            }
+        }while(choice != 0);
+    }
+}
