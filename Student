@@ -1,0 +1,13 @@
+public class Student extends Human {
+    private int course;
+    private String speciality;
+    public Student(String name, int age, int course, String speciality){
+        super(name, age);
+        this.course = course;
+        this.speciality = speciality;
+    }
+    @Override
+    public String toString(){
+        return super.toString() + "\nSpeciality: " + speciality + "\nCourse: " + course;
+    }
+}
