@@ -10,4 +10,20 @@ public class Student extends Human {
     public String toString(){
         return super.toString() + "\nSpeciality: " + speciality + "\nCourse: " + course;
     }
+
+    public int getCourse() {
+        return course;
+    }
+
+    public String getSpeciality() {
+        return speciality;
+    }
+
+    public void setCourse(int course) {
+        this.course = course;
+    }
+
+    public void setSpeciality(String speciality) {
+        this.speciality = speciality;
+    }
 }
