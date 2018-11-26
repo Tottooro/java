@@ -27,24 +27,31 @@ public class group{
             System.out.println(e.toString());
         }
     }
-    public void search(String student){
+    public Student search(String student){
         for (Student s:group) {
             if(s != null){
                 if(s.getName().equals(student)){
                     System.out.println("This group have this student");;
-                    return;
+                    return s;
                 }
             }
         }
         System.out.println("This group does not have this student");
+        return null;
     }
 
     @Override
     public String toString() {
-        if (group == null) {
+        boolean flag = true;
+        for (Student student: group) {
+            if(student == null){
+                flag = false;
+            }
+        }
+        if(flag) {
             Arrays.sort(group, Comparator.comparing(Student::getName));
         }
-        int count = 1;
+         int count = 1;
         for (Student s:group) {
             if(s != null){
                 System.out.println(count+": "+s.toString());
