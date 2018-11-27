@@ -1,0 +1,75 @@
+import java.util.Scanner;
+
+public class main {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int choice = 0;
+        Group group = new Group();
+        do{
+            System.out.println("0.Stop program.");
+            System.out.println("1.Add student to group.");
+            System.out.println("2.Delete student from group.");
+            System.out.println("3.To search student by the name.");
+            System.out.println("4.To sort by your own.");
+            System.out.println("5.To do the 'priziv'");
+            group.toString();
+            choice = in.nextInt();
+            switch(choice){
+                case 0:
+                    break;
+                case 1:
+                    System.out.print("Name:" );
+                    String name = in.nextLine();
+                    name = in.nextLine();
+                    System.out.print("Age: " );
+                    int age = in.nextInt();
+                    System.out.print("Course: ");
+                    int course = in.nextInt();
+                    System.out.print("Position: ");
+                    int index = in.nextInt();
+                    group.add(new Student(name,age,course),index);
+                    break;
+                case 2:
+                    System.out.print("Position: ");
+                    int position = in.nextInt();
+                    group.delete(position);
+                    break;
+                case 3:
+                    System.out.println("Name: ");
+                    String nammos = in.nextLine();
+                    nammos = in.nextLine();
+                    group.search(nammos);
+                    break;
+                case 4:
+                    System.out.println("1,Sort by the name.");
+                    System.out.println("2.Sort by the course.");
+                    System.out.println("3.Sort by the age.");
+                    int choice2 = in.nextInt();
+                    switch (choice2){
+                        case 1:
+                            group.sort(1);
+                            break;
+                        case 2:
+                            group.sort(2);
+                            break;
+                        case 3:
+                            group.sort(3);
+                            break;
+                        default:
+                            System.out.println("Wrong choice");
+                            break;
+                    }
+                    break;
+                case 5:
+                    Voenkom voenkom = new Priziv();
+                    Student[] happy = voenkom.priziv(group);
+                    for (Student s: happy) {
+                        if(s != null) System.out.println(s);
+                    }
+                default:
+                    System.out.println("Wrong choice");
+                    break;
+            }
+        }while(choice != 0);
+    }
+}
