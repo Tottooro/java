@@ -1,0 +1,93 @@
+import java.util.Arrays;
+import java.util.Comparator;
+
+public class Group {
+    private Student[] group = new Student[10];
+    public void add(Student student, int index) {
+        try {
+
+            if(index<1 || index>10){
+                throw new  myException();
+            }else{
+                group[index-1] = student;
+            }
+        }catch (myException e){
+            System.out.println(e.toString());
+        }
+    }
+
+    public void delete(int index){
+        try {
+
+            if(index<1 || index>10){
+                throw new myException();
+            }else{
+                group[index-1] = null;
+            }
+        }catch (myException e){
+            System.out.println(e.toString());
+        }
+    }
+    public Student search(String student){
+        for (Student s:group) {
+            if(s != null){
+                if(s.getName().equals(student)){
+                    System.out.println("This group have this student");;
+                    return s;
+                }
+            }
+        }
+        System.out.println("This group does not have this student");
+        return null;
+    }
+    public void sort(int chose){
+        switch(chose){
+            case 1:
+                Arrays.sort(group);
+                break;
+            case 2:
+                Arrays.sort(group, (Student student1, Student student2) -> {
+
+                    if(student1 == null || student2 == null){return -1;}
+                    if(student1.getCourse() < student2.getCourse()){return -1;}
+                    else if(student1.getCourse() > student2.getCourse()){return 1;}
+                    else{return 0;}
+                });
+                break;
+            case 3:
+                Arrays.sort(group, (Student student1, Student student2) -> {
+
+                    if(student1 == null || student2 == null){return -1;}
+                    if(student1.getAge() < student2.getAge()){return -1;}
+                    else if(student1.getAge() > student2.getAge()){return 1;}
+                    else{return 0;}
+                });
+                break;
+            case 4:
+        }
+    }
+    @Override
+    public String toString() {
+       /* boolean flag = true;
+        for (Student student: group) {
+            if(student == null){
+                flag = false;
+            }
+        }
+        if(flag) */
+         int count = 1;
+        for (Student s:group) {
+            if(s != null){
+                System.out.println(count+": "+s.toString());
+            }else {
+                System.out.println(count+ ": " +"nothing");
+            }
+            count++;
+        }
+        return "";
+    }
+
+    public Student[] getGroup() {
+        return group;
+    }
+}
