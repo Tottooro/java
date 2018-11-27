@@ -1,0 +1,20 @@
+public interface Voenkom {
+    Student[] priziv(Group group);
+}
+
+
+public class Priziv implements Voenkom {
+    @Override
+    public Student[] priziv(Group group) {
+        Student[] godnue = new Student[10];
+        Student[] all = group.getGroup();
+        for (int i=0;i<10;i++) {
+            if(all[i] != null){
+                if(all[i].getAge()>18){
+                    godnue[i] = all[i];
+                }
+            }
+        }
+        return godnue;
+    }
+}
