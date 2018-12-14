@@ -1,0 +1,62 @@
+public class Sum implements Runnable {
+    private static int sum;
+    private int startIndex;
+    private int endIndex;
+    private int[] mas;
+    private Thread thr;
+    Sum(int[] mas, int startIndex, int endIndex){
+        this.mas = mas;
+        this.endIndex = endIndex;
+        this.startIndex = startIndex;
+       // thr = new Thread(this);
+     //   thr.start();
+    }
+
+    @Override
+    public void run() {
+        for(int i =startIndex;i<endIndex;i++) sum += mas[i];
+    }
+
+    public static int getSum() {
+        return sum;
+    }
+
+    public Thread getThr() {
+        return thr;
+    }
+
+}
+ //main file
+ 
+ public class SumEx {
+    public static void main(String[] args) throws InterruptedException {
+        int[] sum1 = new int[100];
+        Sum[] mas = new Sum[10];
+        int sum = 0;
+        for(int i = 0; i<100;i++){
+            sum1[i] = i+1;
+        }
+        int count = 0;
+        for (int i = 0; i<100; i += 10){
+            mas[count] = new Sum(sum1,i, i+10);
+            count++;
+        }
+        long st = System.nanoTime();
+//        for(int i = 0; i<mas.length; i++) {
+//            mas[i].getThr().join();
+//        }
+        for (Sum s: mas) {
+            new Thread(s).start();
+        }
+        long en = System.nanoTime();
+        System.out.println("Time: " + (en-st));
+        System.out.println(Sum.getSum());
+        st = System.nanoTime();
+        for(int i = 0; i<100;i++){
+            sum = sum +  sum1[i];
+        }
+        en = System.nanoTime();
+        System.out.println("Time: " + (en-st));
+        System.out.println(sum);
+    }
+}
