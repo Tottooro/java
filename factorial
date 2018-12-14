@@ -1,0 +1,27 @@
+public class Factorial implements Runnable {
+    private long fact;
+    private Thread thr;
+    Factorial(long fact){
+        this.fact = fact;
+        thr = new Thread(this);
+        thr.start();
+    }
+
+    @Override
+    public void run() {
+        int answr = 1;
+        for(int i = 1;i<=fact;i++){
+            answr = i*answr;
+        }
+        System.out.println("Fact " + fact + ": "+answr);
+    }
+}
+
+//main file
+public class FacrorialEx {
+    public static void main(String[] args) {
+        for(int i = 1; i<=100;i++){
+            new Factorial(i);
+        }
+    }
+}
