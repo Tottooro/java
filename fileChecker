@@ -1,0 +1,71 @@
+import java.io.File;
+
+public class FileChecker implements Runnable {
+    private File folder;
+    private File[] fileList1;
+    private File[] fileList2;
+    private Thread thread;
+    private boolean flag;
+    FileChecker(File folder){
+        this.folder = folder;
+        thread = new Thread(this);
+        thread.start();
+    }
+    @Override
+    public void run() {
+        fileList1 = folder.listFiles();
+        try {
+            for(;;){
+               thread.sleep(100);
+                fileList2 = folder.listFiles();
+                for (File f1: fileList1) {
+                    flag = true;
+                    for (File f2: fileList2) {
+                        if(f1.equals(f2)){
+                        flag = false;
+                        }
+                    }
+                if(flag){
+                    System.out.println("The file " + f1.getName() + " was disappear.");
+                    fileList1 = fileList2;
+                }
+
+                }
+               for (File f1: fileList2) {
+                   flag = true;
+                    for (File f2: fileList1) {
+                        if(f1.equals(f2)){
+                            flag = false;
+                        }
+                    }
+                    if(flag){
+                        System.out.println("The file " + f1.getName() + " was appear.");
+                        fileList1 = fileList2;
+                    }
+
+                }
+
+            }
+
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+//main file
+import java.io.File;
+import java.io.IOException;
+
+public class FileCheckerEx {
+    public static void main(String[] args) throws InterruptedException, IOException {
+        File folder = new File("C:\\Users\\a999s\\OneDrive\\Desktop\\Новая папка (3)");
+        new FileChecker(folder);
+        Thread.currentThread().sleep(10000);
+        File file1 = new File("C:\\Users\\a999s\\OneDrive\\Desktop\\Новая папка (3)\\a.txt");
+        file1.delete();
+       Thread.currentThread().sleep(10000);
+        file1.createNewFile();
+        Thread.currentThread().sleep(1000);
+    }
+}
