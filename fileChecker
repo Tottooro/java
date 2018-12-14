@@ -16,7 +16,7 @@ public class FileChecker implements Runnable {
         fileList1 = folder.listFiles();
         try {
             for(;;){
-               thread.sleep(100);
+               thread.sleep(1000);
                 fileList2 = folder.listFiles();
                 for (File f1: fileList1) {
                     flag = true;
